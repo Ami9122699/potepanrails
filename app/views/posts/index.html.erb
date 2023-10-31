@@ -1,0 +1,54 @@
+
+    <header>
+    <p class="post-title">スケジュール管理アプリ</p>
+    </header>
+	
+    <div class="container">
+    <div class="box post-box-left"><h1>予定一覧</h1></div>
+    <div class="box post-box-right"><p><%= link_to "新規追加", :new_post, class: 'btn--yellow' %></p></div>
+    </div>
+
+    <% if flash[:notice] %>
+    <p class="notice postbar"><%= flash[:notice] %></p>
+    <% end %>
+    
+<table class="index-table">
+	<tbody>
+		<tr>
+			<th class="post-title-name">ID</th>
+			<th class="post-title-name">タイトル</th>
+			<th class="post-title-name">開始日</th>
+			<th class="post-title-name">終了日</th>
+			<th class="post-title-name">終日</th>
+			<th class="post-title-name">更新日時</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+           <% @posts.each do |post| %>
+		<tr>
+			<td><%= post.id %></td>
+			<td><%= post.title %></td>
+			<td><%= post.start_at.strftime("%Y/%m/%d") %></td>
+			<td><%= post.end_at.strftime("%Y/%m/%d") %></td>
+			<td class="post-maru"><% if post.all_day == "1" %>⚪︎<% post.all_day == "0" %><% end %></td>
+			<td><%= post.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+			<td><%= link_to "詳細", post %></td>
+			<td><%= link_to "編集", [:edit, post] %></td>
+			<td><%= link_to "削除", post, method: :delete, data: {confirm: "予定を削除しますか？"} %></td>
+		</tr>
+        <% end %><!--posts.each doの閉じ-->
+	</tbody>
+</table>
+
+
+   
+    <% time = Time.now %>
+    <% posts_all_count = Post.count %>
+    
+    <div class="container">
+    <div class="box post-box-left-total"><p>予定合計<span><%= "#{posts_all_count}" %></span>件</p></div>
+    <div class="box post-box-right post-today"><h3><%= "本日の日付  " + time.strftime("%Y/%m/%d") %></h3></div>
+    </div>
+
+

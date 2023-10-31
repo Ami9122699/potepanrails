@@ -1,0 +1,48 @@
+
+<header>
+ <p class="post-title">スケジュール管理アプリ</p>
+ </header>
+<div class="container">
+ <div class="show-edit-title box post-box-left-new-edit-show"><h1>詳細</h1></div>
+</div>
+<div>
+  <ul class="example">
+    <li class="box post-box-right-new-show-detail"><%= link_to "予約編集", [:edit, @post], class: 'btn--yellow-new-edit'  %></li>
+  </ul>
+</div>
+<table class="edit-new-show-table">
+     <tr>
+       <th>タイトル</th>
+       <td><%= @post.title %></td>
+     </tr>
+ 
+     <tr>
+       <th>開始日</th>
+       <td><%= @post.start_at %></td>
+     </tr>
+ 
+     <tr>
+       <th>終了日</th>
+       <td><%= @post.end_at %></td>
+     </tr>
+ 
+     <tr>
+       <th>終日</th>
+       <td class="post-maru">
+       <% if @post.all_day == "1" %>⚪︎<% @post.all_day == "0" %><% end %></td>
+     </tr>
+
+      <tr>
+       <th>スケジュールメモ</th>
+       <td><%= @post.memo %></td>
+     </tr>
+   </table>
+
+  <div>
+    <ul class="example">
+      <li><%= link_to "予定一覧に戻る", :posts, class: 'btn-cancel-show'    %></li>
+    </ul>
+  </div>
+
+
+  
